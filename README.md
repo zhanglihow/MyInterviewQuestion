@@ -26,7 +26,27 @@
 
 BigDecimal bd1 = new BigDecimal("2.0");  
 BigDecimal bd2 = new BigDecimal("1.1");  
-BigDecimal result=bd1.subtract(bd2);
+BigDecimal result=bd1.subtract(bd2);  
+
+#### BigDecimal  
+BigDecimal b1 = new BigDecimal("1.34");//1.34   
+BigDecimal b2 = BigDecimal.valueOf(1.34);//1.34   
+BigDecimal one1 = new BigDecimal(1.34);//1.3400000000000000799360577730112709105014801025390625  
+BigDecimal two1 = new BigDecimal("1.34");//1.34  
+
+public BigDecimal add(BigDecimal value);//加法  
+public BigDecimal subtract(BigDecimal value);//减法   
+public BigDecimal multiply(BigDecimal value);//乘法  
+public BigDecimal divide(BigDecimal value);//除法     
+
+compareTo方法  
+值相等但具有不同标度的两个BigDecimal对象（如，2.0 和 2.00）被认为是相等的。  
+BigDecimal one = BigDecimal.valueOf(1);  
+BigDecimal two = BigDecimal.valueOf(2);  
+BigDecimal three = one.add(two);  
+int i1 = one.compareTo(two);//-1  
+int i2 = two.compareTo(two);//0  
+int i3 = three.compareTo(two);//1
 
 ### 9，字符串
 问：下面两行语句分别输出什么？  
