@@ -21,7 +21,7 @@
 ### 7，Handler机制
 ##### https://blog.csdn.net/garyhu1/article/details/54573548/
 
-### 8，Java 浮点数在实际应用场景中踩坑题目解析
+### 8，Java 浮点数的实际应用场景
 问：请用 java 实现如下描述流程；你买了价值 1.1 元的东西，你给收银员 2.0 元钱，收银员找你 0.9 元？    
 
 BigDecimal bd1 = new BigDecimal("2.0");  
