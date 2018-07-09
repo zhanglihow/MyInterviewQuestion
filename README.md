@@ -39,7 +39,7 @@ public BigDecimal subtract(BigDecimal value);//减法
 public BigDecimal multiply(BigDecimal value);//乘法  
 public BigDecimal divide(BigDecimal value);//除法     
 
-compareTo方法  
+#### compareTo方法  
 值相等但具有不同标度的两个BigDecimal对象（如，2.0 和 2.00）被认为是相等的。  
 BigDecimal one = BigDecimal.valueOf(1);  
 BigDecimal two = BigDecimal.valueOf(2);  
