@@ -13,7 +13,16 @@
 ##### https://www.jianshu.com/p/8a7d059da746
 
 ### 5，一个整数转换为二进制后，1的个数
-##### https://blog.csdn.net/guoxiaojie_415/article/details/49226045
+``` 
+public int countA(int n){  
+   int res = 0;  
+   while(n != 0){  
+       n &= (n - 1);  
+       res++;  
+   }  
+   return res;
+} 
+```
 
 ### 6，删除链表指定节点
 ##### https://blog.csdn.net/u012572955/article/details/51279439
@@ -23,12 +32,12 @@
 
 ### 8，Java 浮点数的实际应用场景
 问：请用 java 实现如下描述流程；你买了价值 1.1 元的东西，你给收银员 2.0 元钱，收银员找你 0.9 元？    
-
+``` 
 BigDecimal bd1 = new BigDecimal("2.0");  
 BigDecimal bd2 = new BigDecimal("1.1");  
 BigDecimal result=bd1.subtract(bd2);  
 
-#### BigDecimal  
+//BigDecimal  
 BigDecimal b1 = new BigDecimal("1.34");//1.34   
 BigDecimal b2 = BigDecimal.valueOf(1.34);//1.34   
 BigDecimal one1 = new BigDecimal(1.34);//1.3400000000000000799360577730112709105014801025390625  
@@ -39,15 +48,15 @@ public BigDecimal subtract(BigDecimal value);//减法
 public BigDecimal multiply(BigDecimal value);//乘法  
 public BigDecimal divide(BigDecimal value);//除法     
 
-#### compareTo方法  
-值相等但具有不同标度的两个BigDecimal对象（如，2.0 和 2.00）被认为是相等的。  
+//compareTo方法  
+//值相等但具有不同标度的两个BigDecimal对象（如，2.0 和 2.00）被认为是相等的。  
 BigDecimal one = BigDecimal.valueOf(1);  
 BigDecimal two = BigDecimal.valueOf(2);  
 BigDecimal three = one.add(two);  
 int i1 = one.compareTo(two);//-1  
 int i2 = two.compareTo(two);//0  
 int i3 = three.compareTo(two);//1
-
+```
 ### 9，字符串
 问：下面两行语句分别输出什么？  
 String str1 = 'a' + 3 + "Hello";  
@@ -96,8 +105,68 @@ wait() 方法是 Object 类的，当一个线程执行到 wait() 方法时就进
 
 内存泄漏本身一般对业务逻辑不会产生什么危害，作为一般的用户在频次不高的情况下根本感觉不到内存泄漏的存在，真正有危害的是内存泄漏的堆积，这会最终消耗尽系统所有的内存，所以频次不高和占用内存不大的泄露一般都比较难以发现定位，如果需要定位分析内存泄漏可以采用一些第三方工具辅助，譬如 MAT 等。
 
-内存溢出出现的原因一般比较多，譬如内存中一次加载的数据量过于庞大，启动参数内存值设定的过小，内存持续泄漏导致内存用光等。解决内存溢出可以通过修改 JVM 启动参数(-Xms/-Xmx 等，不过一般不建议)，检查分析代码找出庞大数据或者泄漏点。
-  
+内存溢出出现的原因一般比较多，譬如内存中一次加载的数据量过于庞大，启动参数内存值设定的过小，内存持续泄漏导致内存用光等。解决内存溢出可以通过修改 JVM 启动参数(-Xms/-Xmx 等，不过一般不建议)，检查分析代码找出庞大数据或者泄漏点。  
+    
+### 17,给定一个整数，请写一个函数判断该整数的奇偶性
+二进制中如果 一个数是偶数那么最后一个一定是 0 如果一个数是奇数那么最后一位一定是 1；而十进制 1 在 8 位二进制中表示为 0000 0001，我们只需将一个数个 1相与（&） 得到的结果如果是 1 则表示该数为奇数，否知为偶数。
+```
+public boolean isOdd(int num){
+    return num & 1 != 0;
+}
+```
+### 18,同样给定一个整数，请写一个函数判断该整数是不是2的整数次幂
+一个二进制如果表示为 0..0100…0，那么它减去1得到的数二进制表示肯定是 0..0011..1 的形式。那么这个数与自自己减一后的数相与得到结果肯定为0。
+```
+8   0000 1000      7   0000 0111
+7 & 0000 0111      6 & 0000 0110
+-------------      -------------
+0   0000 0000      6   0000 0110
+
+public boolean log2(int num){
+   return (num & (num - 1)) == 0;
+}
+```
+### 19,在其他数都出现两次的数组中找到只出现一次的那个数  
+首先我们应该知道二进制异或操作，异或结果是二进制中两个位相同为0，相异为1。因此可以有个规律：  
+```
+任何整数 n 与 0 异或总等于其本身 n，一个数与其本身异或那么结果肯定是 0。
+```
+假设有这么一个序列： C B D A A B C 其中只有 D 出现一次，那么因为异或满足交换律和结合律，所以我们遍历异或此序列的过程等价于  
+```
+eO ^ (A ^ A ^ B ^ B ^ C ^ C ) ^ D = eO ^ 0 ^ D = D
+```
+所以对于任何排列的数组，如果只有一个数只出现了奇数次，其他的数都出现了欧数次，那么最终异或的结果肯定为出现奇数次的那个数。  
+```
+public int oddTimesNum(int[] arr) {
+   int eO = 0;
+   for (int cur : arr) {
+       eO = eO ^ cur;
+   }
+
+   return eO;
+}
+```
+### 20,在其他数都出现两次的数组中找到只出现一次的那两个数
+```
+public void printOddTimesNum(int[] arr) {
+   int eO = 0;
+   int eOhasOne = 0;
+
+   for (int cur : arr) {
+       eO = eO ^ cur;
+   }
+
+   int rightOne = eO & (~eO + 1);
+   for (int cur : arr) {
+       if ((rightOne & cur) != 0) {
+           eOhasOne = eOhasOne ^ cur;
+       }
+   }
+
+   System.out.println("eOhasOne = " + eOhasOne + "  " + (eOhasOne ^ eO));
+}
+```
+
 
 
 
