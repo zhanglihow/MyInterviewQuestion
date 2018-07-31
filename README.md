@@ -166,7 +166,150 @@ public void printOddTimesNum(int[] arr) {
    System.out.println("eOhasOne = " + eOhasOne + "  " + (eOhasOne ^ eO));
 }
 ```
+### 21,数组A内容为 1,2,3,4...52 ,数组B内容为26个英文字母，使用两个线程分别输入两个数组，打印内容为：12a34b56c78e.......
+```
+import java.util.concurrent.atomic.AtomicBoolean;
 
+public class PrintNumAndChar1 {
+
+    public static void main(String[] args) {
+        AtomicBoolean isNum = new AtomicBoolean(true);
+        int[] nums = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+        char[] chars = { 'a', 'b', 'c', 'd', 'e' };
+        new PrintNums(nums, isNum).start();
+        new PrintChars(chars, isNum).start();
+
+    }
+
+    public static class PrintNums extends Thread {
+        private int[] nums;
+        private AtomicBoolean isNum;
+
+        public PrintNums(int[] a1, AtomicBoolean isNum) {
+            this.nums = a1;
+            this.isNum = isNum;
+        }
+
+        public void run() {
+            int count = 0;
+            for (int i = 0; i < nums.length; i++) {
+                while (!isNum.get()) {
+                    Thread.yield();
+                }
+                System.out.print(nums[i]);
+                count++;
+                if (count == 2) {
+                    isNum.set(false);
+                    count = 0;
+                }
+            }
+            isNum.set(false);
+        }
+    }
+
+    public static class PrintChars extends Thread {
+        private char[] chars;
+        private AtomicBoolean isNum;
+
+        public PrintChars(char[] a2, AtomicBoolean isNum) {
+            this.chars = a2;
+            this.isNum = isNum;
+        }
+
+        public void run() {
+            int count = 0;
+            for (int i = 0; i < chars.length; i++) {
+                while (isNum.get()) {
+                    Thread.yield();
+                }
+                System.out.print(chars[i]);
+                count++;
+                if (count == 1) {
+                    isNum.set(true);
+                    count = 0;
+                }
+            }
+            isNum.set(true);
+        }
+    }
+}
+```
+```
+    public void test2() {
+        int[] nums = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+        char[] chars = { 'a', 'b', 'c', 'd', 'e' };
+        StringBuffer strs=new StringBuffer();
+        PrintNums1 t1 = new PrintNums1(nums,strs);
+        PrintChars1 t2 = new PrintChars1(chars,strs);
+        t1.setPrintChars(t2);
+        t2.setPrintNums(t1);
+        t1.start();
+        t2.start();
+    }
+
+    public static class PrintNums1 extends Thread {
+        private int[] nums;
+        private PrintChars1 printChars;
+        private StringBuffer strs;
+
+        public PrintNums1(int[] a1,StringBuffer strs) {
+            super();
+            this.nums = a1;
+            this.strs=strs;
+        }
+
+        public void setPrintChars(PrintChars1 printChars) {
+            this.printChars = printChars;
+        }
+
+        public void run() {
+            int count = 0;
+            for (int i = 0; i < nums.length; i++) {
+                if(count==2){
+                    count = 0;
+                    LockSupport.unpark(printChars);
+                    LockSupport.park();
+                }
+                strs=strs.append(nums[i]);
+                System.out.println(strs);
+                count++;
+            }
+            LockSupport.unpark(printChars);
+        }
+    }
+
+    public static class PrintChars1 extends Thread {
+        private char[] chars;
+        private PrintNums1 printNums;
+        private StringBuffer strs;
+
+        public PrintChars1(char[] chars,StringBuffer strs) {
+            super();
+            this.chars = chars;
+            this.strs=strs;
+        }
+
+        public void setPrintNums(PrintNums1 printNums) {
+            this.printNums = printNums;
+        }
+
+        public void run() {
+            LockSupport.park();
+            int count = 0;
+            for (int i = 0; i < chars.length; i++) {
+                if(count==1){
+                    count = 0;
+                    LockSupport.unpark(printNums);
+                    LockSupport.park();
+                }
+                strs=strs.append(chars[i]);
+                System.out.println(strs);
+                count++;
+            }
+            LockSupport.unpark(printNums);
+        }
+    }
+```
 
 
 
