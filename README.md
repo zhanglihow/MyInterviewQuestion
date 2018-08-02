@@ -7,7 +7,7 @@
 
 ### [网路篇](https://github.com/zhanglihow/MyInterviewQuestion/blob/master/网络.md)  
 
-### [开源项目原理](https://github.com/zhanglihow/MyInterviewQuestion/blob/master/开源项目原理.md)  
+### [源码与原理](https://github.com/zhanglihow/MyInterviewQuestion/blob/master/源码与原理.md)  
 
 
 
