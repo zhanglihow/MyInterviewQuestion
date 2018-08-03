@@ -92,6 +92,14 @@ wait() 方法是 Object 类的，当一个线程执行到 wait() 方法时就进
 [Java并发面试题](https://blog.csdn.net/u010796790/article/details/52194646)
 ### 16，为什么应该在循环中检查线程的等待条件
 [wait必须放在while循环里面的原因探析](https://blog.csdn.net/qq_35181209/article/details/77362297)
+### 17，简单说说 Thread 的 sleep() 和 yield() 方法的区别？
+sleep() 方法给其他线程运行机会时不考虑线程的优先级，因此会给低优先级的线程以运行的机会；而 yield() 方法只会给相同优先级或更高优先级的线程以运行的机会，甚至可能会是自己继续得到运行机会。  
+线程执行 sleep() 方法后转入阻塞（blocked）状态，而执行 yield() 方法后转入就绪（ready）状态。  
+sleep() 方法声明抛出 InterruptedException，而 yield() 方法没有声明任何异常。  
+sleep() 方法比 yield() 方法（跟操作系统 CPU 调度相关）具有更好的可移植性。  
+### 18，简单说说 Thread 的 join() 和 yield() 方法的区别？
+join() 方法的作用是让 “主线程” 等待 “子线程” 结束之后才能继续运行。  
+yield() 方法的作用是可以暂停当前正在执行的线程对象，让其它有相同优先级的线程执行。它是一个静态方法而且只保证当前线程放弃 CPU 占用而不能保证使其它线程一定能占用 CPU，执行 yield() 的线程有可能在进入到暂停状态后马上又被执行。  
 
 
 
