@@ -76,3 +76,21 @@ wait() 方法是 Object 类的，当一个线程执行到 wait() 方法时就进
 
 内存溢出出现的原因一般比较多，譬如内存中一次加载的数据量过于庞大，启动参数内存值设定的过小，内存持续泄漏导致内存用光等。解决内存溢出可以通过修改 JVM 启动参数(-Xms/-Xmx 等，不过一般不建议)，检查分析代码找出庞大数据或者泄漏点。  
 
+### 9，GC机制
+[JVM GC 机制与性能优化](https://blog.csdn.net/antony9118/article/details/51375662)
+### 10，Java反射
+[Java反射](https://blog.csdn.net/feather_wch/article/details/78719833)
+### 11，Java泛型
+[java 泛型详解](https://blog.csdn.net/s10461/article/details/53941091/)
+### 12，类加载机制，加载过程 
+[类加载机制－类加载的时机、过程](https://blog.csdn.net/u012834750/article/details/70834735)
+### 13，单链表添加具体实现
+[java中单项链表实现方法:增加、删除、插入数据](https://blog.csdn.net/gg543012991/article/details/51030329)
+### 14，进程与线程 
+[进程与线程的一个简单解释](https://www.cnblogs.com/dreamroute/p/5207813.html)
+
+
+
+
+
+
