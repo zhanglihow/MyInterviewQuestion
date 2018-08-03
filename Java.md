@@ -90,6 +90,9 @@ wait() 方法是 Object 类的，当一个线程执行到 wait() 方法时就进
 [进程与线程的一个简单解释](https://www.cnblogs.com/dreamroute/p/5207813.html)
 ### 15，Java并发面试题
 [Java并发面试题](https://blog.csdn.net/u010796790/article/details/52194646)
+### 16，为什么应该在循环中检查线程的等待条件
+[wait必须放在while循环里面的原因探析](https://blog.csdn.net/qq_35181209/article/details/77362297)
+
 
 
 
