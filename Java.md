@@ -88,7 +88,8 @@ wait() 方法是 Object 类的，当一个线程执行到 wait() 方法时就进
 [java中单项链表实现方法:增加、删除、插入数据](https://blog.csdn.net/gg543012991/article/details/51030329)
 ### 14，进程与线程 
 [进程与线程的一个简单解释](https://www.cnblogs.com/dreamroute/p/5207813.html)
-
+### 15，Java并发面试题
+[Java并发面试题](https://blog.csdn.net/u010796790/article/details/52194646)
 
 
 
