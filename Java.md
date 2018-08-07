@@ -100,7 +100,42 @@ sleep() 方法比 yield() 方法（跟操作系统 CPU 调度相关）具有更�
 ### 18，简单说说 Thread 的 join() 和 yield() 方法的区别？
 join() 方法的作用是让 “主线程” 等待 “子线程” 结束之后才能继续运行。  
 yield() 方法的作用是可以暂停当前正在执行的线程对象，让其它有相同优先级的线程执行。它是一个静态方法而且只保证当前线程放弃 CPU 占用而不能保证使其它线程一定能占用 CPU，执行 yield() 的线程有可能在进入到暂停状态后马上又被执行。  
+### 19，如何控制某个方法被并发访问的个数？
+Semaphore类：  
+semaphore.acquire()：用来请求一个信号量，该方法使信号量个数减 1；一旦没有可使用的信号量，即信号量个数变为负数时，再次调用该方法请求时就会阻塞，直到其他线程释放了信号量。  
+semaphore.release()：用来释放一个信号量，该方法使信号量个数加 1。  
+```
+public class SemaphoreTest {  
+    private Semaphore mSemaphore = new Semaphore(5);  
 
+    public void testRun() {  
+        for(int i=0; i< 50; i++){  
+            new Thread(new Runnable() {  
+                @Override  
+                public void run() {  
+                    test();  
+                }  
+            }).start();  
+        }  
+    }  
+
+    private void test(){  
+        try {  
+            mSemaphore.acquire();  
+        } catch (InterruptedException e) {  
+            e.printStackTrace();  
+        }  
+        System.out.println(Thread.currentThread().getName() + " enter...");  
+        try {  
+            Thread.sleep(100);  
+        } catch (InterruptedException e) {  
+            e.printStackTrace();  
+        }  
+        System.out.println(Thread.currentThread().getName() + " exit...");  
+        mSemaphore.release();  
+    }  
+} 
+```
 
 
 
