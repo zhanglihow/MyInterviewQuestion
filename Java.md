@@ -136,6 +136,8 @@ public class SemaphoreTest {
     }  
 } 
 ```
+### 20，线程池
+[『进阶之路』—— 线程池](http://www.wanandroid.com/blog/show/2264)
 
 
 
