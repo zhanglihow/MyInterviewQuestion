@@ -76,3 +76,70 @@ wait() 方法是 Object 类的，当一个线程执行到 wait() 方法时就进
 
 内存溢出出现的原因一般比较多，譬如内存中一次加载的数据量过于庞大，启动参数内存值设定的过小，内存持续泄漏导致内存用光等。解决内存溢出可以通过修改 JVM 启动参数(-Xms/-Xmx 等，不过一般不建议)，检查分析代码找出庞大数据或者泄漏点。  
 
+### 9，GC机制
+[JVM GC 机制与性能优化](https://blog.csdn.net/antony9118/article/details/51375662)
+### 10，Java反射
+[Java反射](https://blog.csdn.net/feather_wch/article/details/78719833)
+### 11，Java泛型
+[java 泛型详解](https://blog.csdn.net/s10461/article/details/53941091/)
+### 12，类加载机制，加载过程 
+[类加载机制－类加载的时机、过程](https://blog.csdn.net/u012834750/article/details/70834735)
+### 13，单链表添加具体实现
+[java中单项链表实现方法:增加、删除、插入数据](https://blog.csdn.net/gg543012991/article/details/51030329)
+### 14，进程与线程 
+[进程与线程的一个简单解释](https://www.cnblogs.com/dreamroute/p/5207813.html)
+### 15，Java并发面试题
+[Java并发面试题](https://blog.csdn.net/u010796790/article/details/52194646)
+### 16，为什么应该在循环中检查线程的等待条件
+[wait必须放在while循环里面的原因探析](https://blog.csdn.net/qq_35181209/article/details/77362297)
+### 17，简单说说 Thread 的 sleep() 和 yield() 方法的区别？
+sleep() 方法给其他线程运行机会时不考虑线程的优先级，因此会给低优先级的线程以运行的机会；而 yield() 方法只会给相同优先级或更高优先级的线程以运行的机会，甚至可能会是自己继续得到运行机会。  
+线程执行 sleep() 方法后转入阻塞（blocked）状态，而执行 yield() 方法后转入就绪（ready）状态。  
+sleep() 方法声明抛出 InterruptedException，而 yield() 方法没有声明任何异常。  
+sleep() 方法比 yield() 方法（跟操作系统 CPU 调度相关）具有更好的可移植性。  
+### 18，简单说说 Thread 的 join() 和 yield() 方法的区别？
+join() 方法的作用是让 “主线程” 等待 “子线程” 结束之后才能继续运行。  
+yield() 方法的作用是可以暂停当前正在执行的线程对象，让其它有相同优先级的线程执行。它是一个静态方法而且只保证当前线程放弃 CPU 占用而不能保证使其它线程一定能占用 CPU，执行 yield() 的线程有可能在进入到暂停状态后马上又被执行。  
+### 19，如何控制某个方法被并发访问的个数？
+Semaphore类：  
+semaphore.acquire()：用来请求一个信号量，该方法使信号量个数减 1；一旦没有可使用的信号量，即信号量个数变为负数时，再次调用该方法请求时就会阻塞，直到其他线程释放了信号量。  
+semaphore.release()：用来释放一个信号量，该方法使信号量个数加 1。  
+```
+public class SemaphoreTest {  
+    private Semaphore mSemaphore = new Semaphore(5);  
+
+    public void testRun() {  
+        for(int i=0; i< 50; i++){  
+            new Thread(new Runnable() {  
+                @Override  
+                public void run() {  
+                    test();  
+                }  
+            }).start();  
+        }  
+    }  
+
+    private void test(){  
+        try {  
+            mSemaphore.acquire();  
+        } catch (InterruptedException e) {  
+            e.printStackTrace();  
+        }  
+        System.out.println(Thread.currentThread().getName() + " enter...");  
+        try {  
+            Thread.sleep(100);  
+        } catch (InterruptedException e) {  
+            e.printStackTrace();  
+        }  
+        System.out.println(Thread.currentThread().getName() + " exit...");  
+        mSemaphore.release();  
+    }  
+} 
+```
+### 20，线程池
+[『进阶之路』—— 线程池](http://www.wanandroid.com/blog/show/2264)
+
+
+
+
+
