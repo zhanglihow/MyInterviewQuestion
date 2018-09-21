@@ -1,6 +1,6 @@
 # Android 篇
 
-### 1，Android View 的分发机制
+### 1，Android 事件的分发机制
 
 https://blog.csdn.net/carson_ho/article/details/54136311
 
@@ -34,7 +34,15 @@ https://blog.csdn.net/garyhu1/article/details/54573548
 ### 13，Android内存优化与分析 
 [Android Studio下的应用性能优化总结-内存优化](https://blog.csdn.net/y1258429182/article/details/51176424)
 ### 14，Glide加载长图，图片背景变色 
-[解决使用Glide加载图片背景出现浅绿色](https://blog.csdn.net/sheilazxx/article/details/54584096)
-
-
+[解决使用Glide加载图片背景出现浅绿色](https://blog.csdn.net/sheilazxx/article/details/54584096)  
+### 15，Activity的启动流程
+[Android Activity的启动流程源码解析(8.0)](https://blog.csdn.net/pihailailou/article/details/78545391)
+### 16，Android 从点击应用图标到界面显示的过程
+[Android 从点击应用图标到界面显示的过程](https://blog.csdn.net/freekiteyu/article/details/79318031)
+### 17，RecyclerView与ListView的异同
+[Android控件RecyclerView与ListView的异同](http://www.cnblogs.com/littlepanpc/p/4497290.html)
+### 18，类的加载机制
+[从Java到android：类的加载机制](https://blog.csdn.net/tubby_ting/article/details/54093475)
+### 19，主线程中的Looper.loop()一直无限循环为什么不会造成ANR？
+https://www.jianshu.com/p/cfe50b8b0a41
 

@@ -138,7 +138,10 @@ public class SemaphoreTest {
 ```
 ### 20，线程池
 [『进阶之路』—— 线程池](http://www.wanandroid.com/blog/show/2264)
-
+### 21，泛型的好处与坏处
+[浅谈泛型的意义与不足](https://blog.csdn.net/tjgykhulj/article/details/51141569)
+### 22，java注解
+[Java基础加强总结(一)——注解(Annotation)](https://www.cnblogs.com/xdp-gacl/p/3622275.html)
 
 
 
