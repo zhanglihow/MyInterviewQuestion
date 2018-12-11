@@ -5,7 +5,7 @@
 
 ### [算法篇](https://github.com/zhanglihow/MyInterviewQuestion/blob/master/算法.md)    
 
-### [网路篇](https://github.com/zhanglihow/MyInterviewQuestion/blob/master/网络.md)  
+### [网络篇](https://github.com/zhanglihow/MyInterviewQuestion/blob/master/网络.md)  
 
 ### [源码与原理篇](https://github.com/zhanglihow/MyInterviewQuestion/blob/master/源码与原理.md)  
 
