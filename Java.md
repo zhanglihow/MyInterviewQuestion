@@ -142,7 +142,24 @@ public class SemaphoreTest {
 [浅谈泛型的意义与不足](https://blog.csdn.net/tjgykhulj/article/details/51141569)
 ### 22，java注解
 [Java基础加强总结(一)——注解(Annotation)](https://www.cnblogs.com/xdp-gacl/p/3622275.html)
+### 23，线程的 run() 和 start() 的区别
+##### Java中的start()方法：  
+线程类的start()方法可以用来启动线程；该方法会在内部调用Runnable接口的run()方法，以在单独的线程中执行run()方法中指定的代码。
+##### start()方法启动线程执行以下任务：
+● 它统计了一个新线程
+● 线程从New State移动到Runnable状态。
+● 当线程有机会执行时，它的目标run()方法将运行。
+##### Java中的run()方法
+线程类的run()方法是Runnable接口的一个抽象方法，由java虚拟机直接调用的，不会创建的新线程。
+##### start()方法和run()方法的区别
+1、方法的定义  
+start()方法在java.lang.Thread类中定义；而，run()方法在java.lang.Runnable接口中定义，必须在实现类中重写。
+2、新线程创建  
+当程序调用start()方法时，会创建一个新线程，然后执行run()方法。但是如果我们直接调用run()方法，则不会创建新的线程，run()方法将作为当前调用线程本身的常规方法调用执行，并且不会发生多线程。
+3、多次调用  
+start()方法不能多次调用，否则抛出java.lang.IllegalStateException；而，run()方法可以进行多次调用，因为它只是一种正常的方法调用。
 
+### 24，线程之死锁
 
-
+https://www.jianshu.com/p/68c0fef7b63e
 
