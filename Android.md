@@ -106,7 +106,7 @@ https://www.cnblogs.com/huangjialin/p/8546513.html
 
 ### 23，Android各版本大致的差异
 
-https://blog.csdn.net/m0_37605407/article/details/79527602
+https://blog.csdn.net/s13383754499/article/details/82736912
 
 ### 24，自定义View及View的绘制流程
 
