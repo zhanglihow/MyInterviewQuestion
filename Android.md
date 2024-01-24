@@ -6,6 +6,14 @@ https://blog.csdn.net/carson_ho/article/details/54136311
 
 https://www.jianshu.com/p/e99b5e8bd67b
 
+事件分发从Action_Down开始，最初由Activity的dispatchTouchEvent()方法接收，不拦截不中断的正常分发流程：Activity的disPatchTouchEvent()方法到PhoneWindow的superDispatchTouchEvent方法，再到DecorView的superDispatchTouchEvent方法，再到ViewGroup的dispatchTouchEvent方法，在ViewGroup的dispatchTouchEvent方法中判断是否拦截，若拦截调用ViewGroup的onTouchEvent方法，该ViewGroup消费掉；若不拦截，该ViewGroup遍历子View根据点击的位置等条件判断是否为接收事件的子View，是，则分发给该子View的dispatchTouchEvent()方法，然后会调用View的onTouchEvent方法，在onTouchEvent方法中会判断该子View是否可点击，是，则事件最终传递到View的onClick方法消费；否则，事件返回向上传递，直到消费或者终止。
+
+在dispatchTouchEvent()方法中返回true或者false，事件不向下传递，只用调用super.dispatchTouchEvent方法，事件才会向下传递。
+在onTouchEvent()方法中返回true，事件在该方法中消费，不会向下或者向上传递；返回super.onTouchEvent方法，将会调用ViewonTouchEvent方法，判断长按事件和点击事件的执行条件存不存在，存在则会在点击事件中消费。
+在onInterceptTouchEvent()方法中返回true表示拦截事件，事件可能会在该ViewGroup中消费掉；返回false表示事件继续往下传递
+
+当某个View的onTouchEvent()返回true，那么事件不会向下或者向上传递，而Action_MOVE和Action_UP事件将会在该View的onTouchEvent方法中处理
+
 ### 2，线性布局和相对布局特点？哪个高效？
 
 https://www.jianshu.com/p/8a7d059da746
